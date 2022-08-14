@@ -1,5 +1,5 @@
-use yew::prelude::*;
 use reqwasm::http::Request;
+use yew::prelude::*;
 mod video;
 mod video_detail;
 use crate::video::*;
@@ -11,19 +11,20 @@ fn app() -> Html {
 
     let on_video_select = {
         let selected_video = selected_video.clone();
-        Callback::from(move |video: Video| {
-            selected_video.set(Some(video))
-        } )
+        Callback::from(move |video: Video| selected_video.set(Some(video)))
     };
-    let details = selected_video.as_ref().map(|video| html! {
-        <VideoDetails video={video.clone()} />
+    let details = selected_video.as_ref().map(|video| {
+        html! {
+            <VideoDetails video={video.clone()} />
+        }
     });
 
     //
     let videos = use_state(|| vec![]);
-        {
-            let videos = videos.clone();
-            use_effect_with_deps(move |_| {
+    {
+        let videos = videos.clone();
+        use_effect_with_deps(
+            move |_| {
                 let videos = videos.clone();
                 wasm_bindgen_futures::spawn_local(async move {
                     let fetched_videos: Vec<Video> = Request::get("/tutorial/data.json")
@@ -36,12 +37,13 @@ fn app() -> Html {
                     videos.set(fetched_videos);
                 });
                 || ()
-            }, ());
-        }
-
+            },
+            (),
+        );
+    }
 
     //
-        let details = details.clone();
+    let details = details.clone();
     html! {
         <>
         <div>

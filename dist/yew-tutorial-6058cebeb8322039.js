@@ -355,15 +355,6 @@ function getImports() {
         wasm.__wbindgen_free(arg0, arg1 * 4);
         console.warn(...v0);
     };
-    imports.wbg.__wbindgen_cb_drop = function(arg0) {
-        const obj = takeObject(arg0).original;
-        if (obj.cnt-- == 1) {
-            obj.a = 0;
-            return true;
-        }
-        const ret = false;
-        return ret;
-    };
     imports.wbg.__wbg_instanceof_Window_42f092928baaee84 = function(arg0) {
         const ret = getObject(arg0) instanceof Window;
         return ret;
@@ -490,6 +481,15 @@ function getImports() {
     imports.wbg.__wbg_setvalue_3dd349be116107ce = function(arg0, arg1, arg2) {
         getObject(arg0).value = getStringFromWasm0(arg1, arg2);
     };
+    imports.wbg.__wbindgen_cb_drop = function(arg0) {
+        const obj = takeObject(arg0).original;
+        if (obj.cnt-- == 1) {
+            obj.a = 0;
+            return true;
+        }
+        const ret = false;
+        return ret;
+    };
     imports.wbg.__wbg_instanceof_Error_2082612c1902c887 = function(arg0) {
         const ret = getObject(arg0) instanceof Error;
         return ret;
@@ -576,12 +576,12 @@ function getImports() {
     imports.wbg.__wbindgen_throw = function(arg0, arg1) {
         throw new Error(getStringFromWasm0(arg0, arg1));
     };
-    imports.wbg.__wbindgen_closure_wrapper3797 = function(arg0, arg1, arg2) {
-        const ret = makeClosure(arg0, arg1, 278, __wbg_adapter_24);
+    imports.wbg.__wbindgen_closure_wrapper3280 = function(arg0, arg1, arg2) {
+        const ret = makeClosure(arg0, arg1, 196, __wbg_adapter_24);
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper4544 = function(arg0, arg1, arg2) {
-        const ret = makeMutClosure(arg0, arg1, 321, __wbg_adapter_27);
+    imports.wbg.__wbindgen_closure_wrapper6474 = function(arg0, arg1, arg2) {
+        const ret = makeMutClosure(arg0, arg1, 322, __wbg_adapter_27);
         return addHeapObject(ret);
     };
 
@@ -617,7 +617,7 @@ function initSync(bytes) {
 
 async function init(input) {
     if (typeof input === 'undefined') {
-        input = new URL('yew-tutorial-d6e0847c7382ec19_bg.wasm', import.meta.url);
+        input = new URL('yew-tutorial-6058cebeb8322039_bg.wasm', import.meta.url);
     }
     const imports = getImports();
 
